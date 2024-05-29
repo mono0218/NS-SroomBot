@@ -36,7 +36,7 @@ function sendSlackMessage(Id){
   
   const payload = {
       "text": `<!${id}> さんが今日の日直です！`,
-      "channel":"#代々木ベース"
+      "channel":"#times_sroom"
   };
  
   const options = {
