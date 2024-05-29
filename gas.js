@@ -3,7 +3,7 @@ const spreadId = PropertiesService.getScriptProperties().getProperty("SPREAD_ID"
 const spreadSheet = SpreadsheetApp.openById(spreadId);
 
 function getShiftName() {
-  const now = new Date("2024/06/03")
+  const now = new Date()
 
   //シート設定
   const sheet = spreadSheet.getSheetByName(`${now.getMonth()+1}月`)
