@@ -3,7 +3,7 @@ const spreadId = PropertiesService.getScriptProperties().getProperty("SPREAD_ID"
 const spreadSheet = SpreadsheetApp.openById(spreadId);
 
 function getShiftName() {
-  const now = new Date()
+  const now = new Date("2024/06/03")
 
   //シート設定
   const sheet = spreadSheet.getSheetByName(`${now.getMonth()+1}月`)
@@ -28,23 +28,14 @@ function getSlackId(name){
 
   //氏名からIdを入手
   const  range = sheet.getRange(row, column);
-  console.log(range.getValue())
+  sendSlackMessage(range.getValue())
 }
 
 function sendSlackMessage(Id){
-  const url = PropertiesService.getScriptProperties().getProperty("WSURL");
+  const token = PropertiesService.getScriptProperties().getProperty("TOKEN");
   
-  const payload = {
-      "text": `<!${id}> さんが今日の日直です！`,
-      "channel":"#times_sroom"
-  };
- 
-  const options = {
-      "method" : "post",
-      "contentType" : "application/json",
-      "payload" : JSON.stringify(payload)
-  };
- 
-  // HTTP リクエストでPOST送信
-  UrlFetchApp.fetch(url, options);
+  let slackApp = SlackApp.create(token);
+  let channelId = "#代々木ベース";
+  let message = `<!${Id}>さんが今日の日直です！`;
+  slackApp.postMessage(channelId, message);
 }
