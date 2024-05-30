@@ -36,6 +36,6 @@ function sendSlackMessage(Id){
   
   let slackApp = SlackApp.create(token);
   let channelId = "#代々木ベース";
-  let message = `<!${Id}>さんが今日の日直です！`;
+  let message = `<@${Id}>さんが今日の日直です！`;
   slackApp.postMessage(channelId, message);
 }
